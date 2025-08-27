@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>AKC Dog Breed Index</title>
+</head>
+<body>
+  <h1>AKC Dog Breed Index</h1>
+  <p>This page lists all American Kennel Club recognized dog breeds.</p>
+  <ul id="breed-list">
+    <li>Loading...</li>
+  </ul>
+  <script>
+  fetch('https://www.akc.org/wp-json/wp/v2/dog_breeds?per_page=500')
+    .then(resp => resp.json())
+    .then(data => {
+      const list = document.getElementById('breed-list');
+      list.innerHTML = '';
+      const breeds = data.sort((a, b) => a.title.rendered.localeCompare(b.title.rendered));
+      for (const breed of breeds) {
+        const li = document.createElement('li');
+        const a = document.createElement('a');
+        a.textContent = breed.title.rendered;
+        a.href = `./${breed.slug}.html`;
+        li.appendChild(a);
+        list.appendChild(li);
+      }
+    })
+    .catch(err => {
+      const list = document.getElementById('breed-list');
+      list.textContent = 'Failed to load breed list.';
+      console.error(err);
+    });
+  </script>
+</body>
+</html>
