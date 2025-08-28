@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<!--
+README: Copy this file into the templates/ directory for each breed page and
+replace placeholders like {{BREED_NAME}}, {{IMAGE_URL}}, {{BREED_DESCRIPTION}},
+and other tokens with actual data.
+-->
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>{{BREED_NAME}} - AKC Breed Profile</title>
+  <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+  <header>
+    <h1>{{BREED_NAME}}</h1>
+  </header>
+  <main>
+    <figure class="breed-image">
+      <img src="{{IMAGE_URL}}" alt="{{BREED_NAME}}">
+      <figcaption>{{BREED_NAME}}</figcaption>
+    </figure>
+    <section class="description">
+      <h2>Description</h2>
+      <p>{{BREED_DESCRIPTION}}</p>
+    </section>
+    <section class="details">
+      <h2>Details</h2>
+      <ul>
+        <li><strong>Group:</strong> {{BREED_GROUP}}</li>
+        <li><strong>Temperament:</strong> {{BREED_TEMPERAMENT}}</li>
+        <li><strong>Height:</strong> {{BREED_HEIGHT}}</li>
+        <li><strong>Weight:</strong> {{BREED_WEIGHT}}</li>
+        <li><strong>Life Expectancy:</strong> {{BREED_LIFE_EXPECTANCY}}</li>
+      </ul>
+    </section>
+  </main>
+  <footer>
+    <p>&copy; <span id="year"></span> AKC Breed Profiles</p>
+  </footer>
+  <script>
+    document.getElementById('year').textContent = new Date().getFullYear();
+  </script>
+</body>
+</html>
